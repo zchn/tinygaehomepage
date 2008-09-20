@@ -1,0 +1,32 @@
+;; Object html.flav/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "html.flav/"
+  :tables (list 
+   (semanticdb-table "foot.html"
+    :major-mode 'html-mode
+    :tags '(("" section nil nil [7 10]))
+    :file "foot.html"
+    :pointmax 152
+    )
+   (semanticdb-table "head.html"
+    :major-mode 'html-mode
+    :tags '(("$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)" section nil nil [126 200]) ("$(blog_title)" section (:members (("$(blog_title)" section (:members (("Home" section nil nil [237 271]) ("RSS 2.0" section nil nil [271 319]) ("ATOM 1.0" section nil nil [319 322]))) nil [207 210]))) nil [200 205]))
+    :file "head.html"
+    :pointmax 407
+    )
+   (semanticdb-table "story.html"
+    :major-mode 'html-mode
+    :tags '(("$(title)" section (:members (("/$(absolute_path)" section nil nil [162 252]) ("permanent link to this entry" section nil nil [252 255]))) nil [1 4]))
+    :file "story.html"
+    :pointmax 355
+    )
+   (semanticdb-table "content_type.html"
+    :major-mode 'html-mode
+    :tags 'nil
+    :file "content_type.html"
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

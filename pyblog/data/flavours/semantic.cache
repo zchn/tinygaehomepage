@@ -1,0 +1,18 @@
+;; Object flavours/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "flavours/"
+  :tables (list 
+   (semanticdb-table "comment-form.html"
+    :major-mode 'html-mode
+    :tags '(("// used by check_javascript.py. this is almost entirely backwards compatible,
+// back to 4.x browsers.
+document.getElementById(\"secretTokenInput\").value = \"$blog_title\";" section nil nil [1235 1448]) ("" section nil nil [1448 1456]))
+    :file "comment-form.html"
+    :pointmax 1603
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

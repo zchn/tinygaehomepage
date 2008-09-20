@@ -1,0 +1,76 @@
+Emacs EMMS 安装配置
+
+
+
+<p>首先下载emms，解压。</p>
+
+<h4><span class="toplink"><a href="#top">top</a></span>安装方法1：安装源代码文件</h4>
+
+<p class="first">在.emacs中加入</p>
+
+<pre class="src">
+(add-to-list 'load-path <span style="color: #ffa07a;">"path/to/your/emms/"</span>)
+</pre>
+
+
+<h4><span class="toplink"><a href="#top">top</a></span>安装方法2：安装二进制文件</h4>
+进入源代码目录
+
+<pre class="src">
+make
+make install
+</pre>
+
+
+<h4><span class="toplink"><a href="#top">top</a></span>配置</h4>
+在.emacs中加入：
+
+<pre class="src">
+
+(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">emms-setup</span>)
+(emms-standard)
+(emms-default-players)
+
+<span style="color: #ff7f24;">;</span><span style="color: #ff7f24;">&#25105;&#26159;&#29992;mpd&#20316;&#20026;&#25773;&#25918;&#22120;
+</span>(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">emms-player-mpd</span>)
+(setq emms-player-mpd-server-name <span style="color: #ffa07a;">"localhost"</span>)
+(setq emms-player-mpd-server-port <span style="color: #ffa07a;">"6600"</span>)
+
+<span style="color: #ff7f24;">;</span><span style="color: #ff7f24;">&#21033;&#29992;mpd&#26174;&#31034;tag
+</span>(add-to-list 'emms-info-functions 'emms-info-mpd)
+
+(add-to-list 'emms-player-list 'emms-player-mpd)
+
+<span style="color: #ff7f24;">;</span><span style="color: #ff7f24;">&#26174;&#31034;&#27468;&#35789;
+</span>(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">emms-lyrics</span>)
+(emms-lyrics 1)
+
+(setq emms-lyrics-display-on-minibuffer t)
+
+(setq emms-lyrics-display-on-modeline nil)
+
+(setq emms-lyrics-scroll-p nil)
+
+(setq emms-lyrics-dir <span style="color: #ffa07a;">"/var/lib/mpd/lyrics/"</span>)
+
+(setq emms-lyrics-coding-system (quote gb2312))
+
+<span style="color: #ff7f24;">;</span><span style="color: #ff7f24;">key-bindings
+</span>(global-set-key (kbd <span style="color: #ffa07a;">"C-c e e"</span>) 'emms-playlist-mode-go)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e c"</span>) 'emms-player-mpd-connect)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e n"</span>) 'emms-next)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e p"</span>) 'emms-previous)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e o"</span>) 'emms-show)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e SPC"</span>) 'emms-pause)
+(global-set-key (kbd <span style="color: #ffa07a;">"C-c e l"</span>) 'emms-lyrics-toggle)
+
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">playlist-mode-map
+</span>(define-key emms-playlist-mode-map (kbd <span style="color: #ffa07a;">"SPC"</span>) 'emms-pause)
+(define-key emms-playlist-mode-map (kbd <span style="color: #ffa07a;">"+"</span>) 'emms-volume-raise)
+(define-key emms-playlist-mode-map (kbd <span style="color: #ffa07a;">"-"</span>) 'emms-volume-lower)
+(define-key emms-playlist-mode-map (kbd <span style="color: #ffa07a;">"&lt;right&gt;"</span>)
+  (<span style="color: #00ffff;">lambda</span> () (interactive) (emms-seek +10)))
+(define-key emms-playlist-mode-map (kbd <span style="color: #ffa07a;">"&lt;left&gt;"</span>)
+  (<span style="color: #00ffff;">lambda</span> () (interactive) (emms-seek -10)))
+</pre>
+
