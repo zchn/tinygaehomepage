@@ -1,0 +1,23 @@
+;; Object pyblog/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "pyblog/"
+  :tables (list 
+   (semanticdb-table "pb.py"
+    :major-mode 'python-mode
+    :tags '(("wsgiref.handlers" include nil (dependency-file none) [1 25]) ("Pyblosxom.pyblosxom" include nil (dependency-file none) [29 56]) ("google.appengine.ext" include nil (dependency-file none) [58 100]) ("main" function nil nil [103 227]) ("if" code nil nil [229 272]))
+    :file "pb.py"
+    :pointmax 272
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "config.py"
+    :major-mode 'python-mode
+    :tags '(("py" variable nil nil [432 439]) ("py" variable nil nil [781 801]) ("py" variable nil nil [1123 1151]) ("py" variable nil nil [1193 1237]) ("py" variable nil nil [1277 1304]) ("py" variable nil nil [1395 1433]) ("py" variable nil nil [1499 1525]) ("py" variable nil nil [1580 1609]) ("py" variable nil nil [1875 1916]) ("py" variable nil nil [2055 2096]) ("py" variable nil nil [2136 2166]) ("py" variable nil nil [2167 2201]) ("py" variable nil nil [2323 2352]) ("py" variable nil nil [2566 2581]) ("py" variable nil nil [2756 2777]) ("py" variable nil nil [2831 2861]) ("py" variable nil nil [4430 4466]) ("py" variable nil nil [6726 6761]) ("py" variable nil nil [6762 6787]))
+    :file "config.py"
+    :pointmax 6789
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

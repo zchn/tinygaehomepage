@@ -1,0 +1,226 @@
+;; Object plugins/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "plugins/"
+  :tables (list 
+   (semanticdb-table "hardcodedates.py"
+    :major-mode 'python-mode
+    :tags '(("\"\"\"
+This allows the user to create a file \"timestamps\" in their datadir,
+that will override the timestamp of any given blog entry. Each line
+in this file should be of the form \"YYYY-MM-DD-hh-mm file-name\".
+Then for any entry that one of these lines exist the system will use
+that timestamp instead of the actual files modification time.
+
+Note: the filename is relative to your data-dir.
+Example of a line for the file /var/data-dir/school/abc.txt
+   where the datadir is \"/var/data-dir/\" and the date is Aug 9, 2004.
+
+2004-08-09-00-00 school/abc.txt
+\"\"\"" code nil nil [59 612]) ("__author__" variable nil nil [613 661]) ("__homepage__" variable nil nil [662 717]) ("__email__" variable nil nil [718 795]) ("__version__" variable nil nil [796 815]) ("Pyblosxom" include nil (dependency-file none) [817 844]) ("os" include nil (dependency-file none) [845 886]) ("FILETIME" variable nil nil [888 983]) ("all_timestamps" variable nil nil [985 1004]) ("extensions" variable nil nil [1005 1020]) ("timestamps_to_save" variable nil nil [1021 1044]) ("init" function (:arguments (("request" variable nil (reparse-symbol function_parameters) [1055 1062]))) nil [1046 1780]) ("cb_filestat" function (:arguments (("args" variable nil (reparse-symbol function_parameters) [1797 1801]))) nil [1781 2540]) ("cb_end" function (:arguments (("args" variable nil (reparse-symbol function_parameters) [2552 2556]))) nil [2541 3155]))
+    :file "hardcodedates.py"
+    :pointmax 3155
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "comments.py"
+    :major-mode 'python-mode
+    :tags '(("\"\"\"
+This module contains an extension to Blosxom file entries to support
+comments.
+
+Copyright 2003-2007 by contributors:
+  Ted Leung
+  Will Guaraldi
+  Wari Wahab
+  Robert Wall
+  Bill Mill
+  Roberto De Almeida
+  David Geller
+  David Pashley
+  Ryan Barrett
+
+If you make any changes to this plugin, please a send a patch with your
+changes to pyblosxom-devel@sourceforge.net so that we can incorporate your
+changes. Thanks!
+
+This module supports the following config parameters (they are not
+required):
+
+   comment_dir - the directory we're going to store all our comments in.
+                 this defaults to datadir + \"comments\".
+   comment_ext - the file extension used to denote a comment file.
+                 this defaults to \"cmt\".
+   comment_draft_ext - the file extension used for new comments that have
+                       not been manually approved by you.  this defaults
+                       to comment_ext (i.e. there is no draft stage)
+
+   comment_smtp_server - the smtp server to send comments notifications
+                         through.
+   comment_mta_cmd - alternatively, a command line to invoke your MTA (e.g.
+                     sendmail) to send comment notifications through.
+   comment_smtp_from - the person comment notifications will be from. If
+                        you're using SMTP, this should be an email address
+                        accepted by your SMTP server. If you omit this, the
+                        from address will be the e-mail address as input in
+                        the comment form.
+   comment_smtp_to - the person to send comment notifications to.
+   comment_nofollow - set this to 1 to add rel=\"nofollow\" attributes to
+                 links in the description -- these attributes are embedded
+                 in the stored representation.
+
+Comments are stored 1 per file in a parallel hierarchy to the datadir
+hierarchy.  The filename of the comment is the filename of the blog
+entry, plus the creation time of the comment as a float, plus the 
+comment extension.
+
+Comments now follow the blog_encoding variable specified in config.py .
+If you don't include a blog_encoding variable, this will default to
+iso-8859-1.
+
+Comments will be shown for a given page if one of the following is
+true:
+
+ 1. the page has only one blog entry on it and the request is for a
+    specific blog entry as opposed to a category with only one entry
+    in it
+
+ 2. if \"showcomments=yes\" is in the querystring then comments will
+    be shown
+
+
+IMPLEMENTING COMMENT PREVIEW
+============================
+
+If you would like comment previews, you need to do 2 things.
+
+ 1) Add a preview button to comment-form.html like this:
+    <input name=\"preview\" type=\"submit\" value=\"Preview\" />
+
+    You may change the contents of the value attribute, but the name of
+    the input must be \"preview\".
+
+ 2) Still in your comment-form.html template, you need to use the comment
+    values to fill in the values of your input fields like so:
+    <input name=\"author\" type=\"text\" value=\"$cmt_author\">
+    <input name=\"email\" type=\"text\" value=\"$cmt_email\">
+    <input name=\"url\" type=\"text\" value=\"$cmt_link\">
+    <textarea name=\"body\">$cmt_description</textarea>
+
+    If there is no preview available, these variables will be stripped
+    from the text and cause no problem.
+
+ 3) Copy comment.html to a template called comment-preview.html. All of
+    the available variables from the comment template are available for
+    this template.
+
+
+AJAX SUPPORT
+============
+
+Comment previewing and posting can optionally use AJAX, as opposed to full
+HTTP POST requests. This avoids a full-size roundtrip and re-render, so
+commenting feels faster and more lightweight.
+
+AJAX commenting degrades gracefully in older browsers. If JavaScript is
+disabled or not supported in the user's browser, or if it doesn't support
+XmlHttpRequest, comment posting and preview will use normal HTTP POST.
+
+AJAX comment support requires a few elements in the comment-form flavour
+template. These elements are included in default comment-form.html template
+that comes with this plugin.
+
+Specifically, the comment-anchor tag must be the first thing in the template:
+
+  <p id=\"comment-anchor\" />
+
+Also, the form needs some JavaScript. Add an onsubmit handler to the form tag:
+
+<form method=\"post\" action=\"$base_url/$file_path#comment-anchor\"
+      name=\"comments_form\" id=\"comments_form\" onsubmit=\"return false;\">
+
+If you run pyblosxom inside cgiwrap, you'll probably need to remove
+#comment-anchor from the URL in the action attribute. They're incompatible.
+(Your host may even be using cgiwrap without your knowledge. If AJAX comment
+previewing and posting don't work, try removing #comment-anchor.)
+
+Next, add onclick handlers to the button input tags:
+
+<input value=\"Preview\" name=\"preview\" type=\"button\" id=\"preview\"
+       onclick=\"send_comment('preview');\" />
+<input value=\"Submit\" name=\"submit\" type=\"button\" id=\"post\"
+       onclick=\"send_comment('post');\" />
+
+Finally, include this script tag somewhere after the </form> closing tag:
+
+  <script type=\"text/javascript\" src=\"/comments.js\"></script>
+
+(Note the separate closing </script> tag! It's for IE; without it, IE won't
+actually run the code in comments.js.)
+
+
+NOFOLLOW SUPPORT
+================
+
+This plugin implements Google's nofollow support for links in the body of the 
+comment. If you display the link of the comment poster in your HTML template 
+then you must add the rel=\"nofollow\" attribute to your template as well
+
+
+NOTE TO DEVELOPERS WHO ARE WRITING PLUGINS THAT CREATE COMMENTS
+===============================================================
+
+Each entry has to have the following properties in order to work with
+comments:
+
+ 1. absolute_path - the category of the entry.  
+    ex. \"dev/pyblosxom\"
+ 2. fn - the filename of the entry without the file extension and without
+    the directory.  
+    ex. \"staticrendering\"
+ 3. file_path - the absolute_path plus the fn.  
+    ex. \"dev/pyblosxom/staticrendering\"
+
+Also, if you don't want comments for an entry, add \"nocomments\" = 1
+to the properties for the entry.
+
+
+WHERE TO FIND ADDITIONAL MATERIAL
+=================================
+
+There is a README file that comes with the contributed plugins pack
+in contrib/plugins/comments/ which has more information on installing
+the comments plugin.
+
+Additionally, there is a chapter in the PyBlosxom manual that
+covers installing and configuring the comments plugin.  The manual
+is on the PyBlosxom web-site: http://pyblosxom.sourceforge.net/
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+\"Software\"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+\"\"\"" code nil nil #<overlay from 1 to 7539 in comments-gae.py>) ("__author__" variable nil nil #<overlay from 7540 to 7564 in comments-gae.py>) ("__version__" variable nil nil #<overlay from 7565 to 7636 in comments-gae.py>) ("__url__" variable nil nil #<overlay from 7637 to 7682 in comments-gae.py>) ("__description__" variable nil nil #<overlay from 7683 to 7742 in comments-gae.py>) ("cgi" include nil (dependency-file none) #<overlay from 7744 to 7835 in comments-gae.py>) ("email.MIMEText" include nil (dependency-file none) #<overlay from 7836 to 7871 in comments-gae.py>) ("xml.sax.saxutils" include nil (dependency-file none) #<overlay from 7872 to 7907 in comments-gae.py>) ("Pyblosxom" include nil (dependency-file none) #<overlay from 7908 to 7935 in comments-gae.py>) ("Pyblosxom.entries.base" include nil (dependency-file none) #<overlay from 7936 to 7980 in comments-gae.py>) ("Pyblosxom.renderers" include nil (dependency-file none) #<overlay from 7981 to 8020 in comments-gae.py>) ("google.appengine.ext" include nil (dependency-file none) #<overlay from 8021 to 8056 in comments-gae.py>) ("Commentdb" type (:superclasses ("db.Model") :members (("id" variable nil (reparse-symbol indented_block_body) #<overlay from 8089 to 8114 in comments-gae.py>) ("filename" variable nil (reparse-symbol indented_block_body) #<overlay from 8120 to 8150 in comments-gae.py>) ("entry" variable nil (reparse-symbol indented_block_body) #<overlay from 8156 to 8196 in comments-gae.py>) ("title" variable nil (reparse-symbol indented_block_body) #<overlay from 8202 to 8229 in comments-gae.py>) ("ipaddress" variable nil (reparse-symbol indented_block_body) #<overlay from 8235 to 8266 in comments-gae.py>) ("author" variable nil (reparse-symbol indented_block_body) #<overlay from 8272 to 8300 in comments-gae.py>) ("link" variable nil (reparse-symbol indented_block_body) #<overlay from 8306 to 8332 in comments-gae.py>) ("email" variable nil (reparse-symbol indented_block_body) #<overlay from 8338 to 8364 in comments-gae.py>) ("source" variable nil (reparse-symbol indented_block_body) #<overlay from 8370 to 8398 in comments-gae.py>) ("pubDate" variable nil (reparse-symbol indented_block_body) #<overlay from 8404 to 8452 in comments-gae.py>) ("description" variable nil (reparse-symbol indented_block_body) #<overlay from 8458 to 8489 in comments-gae.py>)) :type "class") nil #<overlay from 8058 to 8491 in comments-gae.py>) ("cb_start" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 8510 to 8514 in comments-gae.py>))) nil #<overlay from 8497 to 8979 in comments-gae.py>) ("verify_installation" function (:arguments (("request" variable nil (reparse-symbol function_parameters) #<overlay from 9008 to 9015 in comments-gae.py>))) nil #<overlay from 8984 to 9870 in comments-gae.py>) ("createhtmlmail" function (:arguments (("html" variable nil (reparse-symbol function_parameters) #<overlay from 9891 to 9895 in comments-gae.py>) ("headers" variable nil (reparse-symbol function_parameters) #<overlay from 9897 to 9904 in comments-gae.py>))) nil #<overlay from 9871 to 11141 in comments-gae.py>) ("readComments" function (:arguments (("entry" variable nil (reparse-symbol function_parameters) #<overlay from 11159 to 11164 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 11166 to 11172 in comments-gae.py>))) nil #<overlay from 11142 to 11880 in comments-gae.py>) ("getCommentCount" function (:arguments (("entry" variable nil (reparse-symbol function_parameters) #<overlay from 11905 to 11910 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 11912 to 11918 in comments-gae.py>))) nil #<overlay from 11885 to 12150 in comments-gae.py>) ("cmtExpr" function (:arguments (("entry" variable nil (reparse-symbol function_parameters) #<overlay from 12290 to 12295 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 12297 to 12303 in comments-gae.py>))) nil #<overlay from 12278 to 12813 in comments-gae.py>) ("readComment" function (:arguments (("filename" variable nil (reparse-symbol function_parameters) #<overlay from 12830 to 12838 in comments-gae.py>) ("encoding" variable nil (reparse-symbol function_parameters) #<overlay from 12840 to 12848 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 12850 to 12856 in comments-gae.py>))) nil #<overlay from 12814 to 15380 in comments-gae.py>) ("writeComment" function (:arguments (("request" variable nil (reparse-symbol function_parameters) #<overlay from 15578 to 15585 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 15587 to 15593 in comments-gae.py>) ("data" variable nil (reparse-symbol function_parameters) #<overlay from 15595 to 15599 in comments-gae.py>) ("comment" variable nil (reparse-symbol function_parameters) #<overlay from 15601 to 15608 in comments-gae.py>) ("encoding" variable nil (reparse-symbol function_parameters) #<overlay from 15610 to 15618 in comments-gae.py>))) nil #<overlay from 15561 to 19227 in comments-gae.py>) ("send_email" function (:arguments (("config" variable nil (reparse-symbol function_parameters) #<overlay from 19243 to 19249 in comments-gae.py>) ("entry" variable nil (reparse-symbol function_parameters) #<overlay from 19251 to 19256 in comments-gae.py>) ("comment" variable nil (reparse-symbol function_parameters) #<overlay from 19258 to 19265 in comments-gae.py>) ("comment_dir" variable nil (reparse-symbol function_parameters) #<overlay from 19267 to 19278 in comments-gae.py>) ("comment_filename" variable nil (reparse-symbol function_parameters) #<overlay from 19280 to 19296 in comments-gae.py>))) nil #<overlay from 19228 to 23299 in comments-gae.py>) ("clean_author" function (:arguments (("s" variable nil (reparse-symbol function_parameters) #<overlay from 23317 to 23318 in comments-gae.py>))) nil #<overlay from 23300 to 23612 in comments-gae.py>) ("escape_SMTP_commands" function (:arguments (("s" variable nil (reparse-symbol function_parameters) #<overlay from 23638 to 23639 in comments-gae.py>))) nil #<overlay from 23613 to 24126 in comments-gae.py>) ("sanitize" function (:arguments (("body" variable nil (reparse-symbol function_parameters) #<overlay from 24140 to 24144 in comments-gae.py>))) nil #<overlay from 24127 to 27941 in comments-gae.py>) ("dont_follow" function (:arguments (("mo" variable nil (reparse-symbol function_parameters) #<overlay from 27966 to 27968 in comments-gae.py>))) nil #<overlay from 27950 to 28019 in comments-gae.py>) ("add_dont_follow" function (:arguments (("s" variable nil (reparse-symbol function_parameters) #<overlay from 28040 to 28041 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 28043 to 28049 in comments-gae.py>))) nil #<overlay from 28020 to 28232 in comments-gae.py>) ("cb_prepare" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 28248 to 28252 in comments-gae.py>))) nil #<overlay from 28233 to 31716 in comments-gae.py>) ("AjaxRenderer" type (:superclasses ("blosxom.Renderer") :members (("\"\"\" The renderer used when responding to AJAX requests to preview and post
+    comments. Renders *only* the comment and comment-preview divs.
+    \"\"\"" code nil (reparse-symbol indented_block_body) #<overlay from 31759 to 31908 in comments-gae.py>) ("__init__" function (:arguments (("self" variable nil (reparse-symbol function_parameters) #<overlay from 31926 to 31930 in comments-gae.py>) ("request" variable nil (reparse-symbol function_parameters) #<overlay from 31932 to 31939 in comments-gae.py>) ("data" variable nil (reparse-symbol function_parameters) #<overlay from 31941 to 31945 in comments-gae.py>))) (reparse-symbol indented_block_body) #<overlay from 31913 to 32164 in comments-gae.py>) ("__shouldOutput" function (:arguments (("self" variable nil (reparse-symbol function_parameters) #<overlay from 32188 to 32192 in comments-gae.py>) ("entry" variable nil (reparse-symbol function_parameters) #<overlay from 32194 to 32199 in comments-gae.py>) ("template_name" variable nil (reparse-symbol function_parameters) #<overlay from 32201 to 32214 in comments-gae.py>))) (reparse-symbol indented_block_body) #<overlay from 32169 to 32667 in comments-gae.py>) ("outputTemplate" function (:arguments (("self" variable nil (reparse-symbol function_parameters) #<overlay from 32691 to 32695 in comments-gae.py>) ("output" variable nil (reparse-symbol function_parameters) #<overlay from 32697 to 32703 in comments-gae.py>) ("entry" variable nil (reparse-symbol function_parameters) #<overlay from 32705 to 32710 in comments-gae.py>) ("template_name" variable nil (reparse-symbol function_parameters) #<overlay from 32712 to 32725 in comments-gae.py>) ("override" variable nil (reparse-symbol function_parameters) #<overlay from 32727 to 32735 in comments-gae.py>))) (reparse-symbol indented_block_body) #<overlay from 32672 to 32928 in comments-gae.py>) ("_outputFlavour" function (:arguments (("self" variable nil (reparse-symbol function_parameters) #<overlay from 32952 to 32956 in comments-gae.py>) ("entry" variable nil (reparse-symbol function_parameters) #<overlay from 32958 to 32963 in comments-gae.py>) ("template_name" variable nil (reparse-symbol function_parameters) #<overlay from 32965 to 32978 in comments-gae.py>))) (reparse-symbol indented_block_body) #<overlay from 32933 to 33107 in comments-gae.py>)) :type "class") nil #<overlay from 31717 to 33107 in comments-gae.py>) ("cb_renderer" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 33124 to 33128 in comments-gae.py>))) nil #<overlay from 33108 to 33573 in comments-gae.py>) ("cb_handle" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 33588 to 33592 in comments-gae.py>))) nil #<overlay from 33574 to 34204 in comments-gae.py>) ("massage_link" function (:arguments (("linkstring" variable nil (reparse-symbol function_parameters) #<overlay from 34222 to 34232 in comments-gae.py>))) nil #<overlay from 34205 to 34524 in comments-gae.py>) ("decode_form" function (:arguments (("d" variable nil (reparse-symbol function_parameters) #<overlay from 34541 to 34542 in comments-gae.py>) ("blog_encoding" variable nil (reparse-symbol function_parameters) #<overlay from 34544 to 34557 in comments-gae.py>))) nil #<overlay from 34525 to 35202 in comments-gae.py>) ("get_content_type_charset" function nil nil #<overlay from 35203 to 35575 in comments-gae.py>) ("cb_head" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 35588 to 35592 in comments-gae.py>))) nil #<overlay from 35576 to 36088 in comments-gae.py>) ("cb_story" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 36110 to 36114 in comments-gae.py>))) nil #<overlay from 36097 to 36706 in comments-gae.py>) ("build_preview_comment" function (:arguments (("form" variable nil (reparse-symbol function_parameters) #<overlay from 36733 to 36737 in comments-gae.py>) ("entry" variable nil (reparse-symbol function_parameters) #<overlay from 36739 to 36744 in comments-gae.py>) ("config" variable nil (reparse-symbol function_parameters) #<overlay from 36746 to 36752 in comments-gae.py>))) nil #<overlay from 36707 to 38340 in comments-gae.py>) ("cb_story_end" function (:arguments (("args" variable nil (reparse-symbol function_parameters) #<overlay from 38358 to 38362 in comments-gae.py>))) nil #<overlay from 38341 to 39871 in comments-gae.py>))
+    :file "comments.py"
+    :pointmax 37654
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

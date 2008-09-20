@@ -1,0 +1,65 @@
+利用ssh tunnel上国际网
+
+<p>学校里上国际网得花钱，于是我只好通过unix-center提供的ssh登录用w3m来访问国外的网站，但是w3m实在是不好用，于是我想何不在unix-center的服务器上架一个代理，直接通过代理上就可以了，但是unix-center那边我登录的机器在内网里，所以还要加一个ssh tunnel，具体过程如下：</p>
+
+<p>工具：</p>
+
+<ul>
+<li>unix-center帐号一个，可以到www.unix-center.net免费注册一个。</li>
+<li>putty.exe，用在本地机器上。</li>
+<li>tinyproxy.tar.gz，安装在unix-center上的你的服务器上。</li>
+</ul>
+
+<p>过程：
+1.在unix-center的服务器上下载tinyproxy源代码。</p>
+
+<pre class="example">
+wget -c http://nchc.dl.sourceforge.net/sourceforge/tinyproxy/tinyproxy-1.6.3.tar.gz
+</pre>
+2.解压缩，安装：
+
+<pre class="example">
+tar xvf tinyproxy-1.6.3.tar.gz
+
+cd tinyproxy-1.6.3
+
+./configure --prefix=$HOME --with-config=$HOME/.tinyproxyrc
+
+make &amp;&amp; make install
+</pre>
+
+<p>3.编辑.tinyproxyrc文件，加入如下内容：</p>
+
+<pre class="example">
+LogFile ~/.tinyproxy.log
+Port 7891
+MaxClients 1000
+StartServers 1
+</pre>
+4.运行tinyproxy:
+
+<pre class="example">
+cd $HOME/sbin
+
+./tinyproxy
+</pre>
+5.设置你的putty客户端，选择tunnels，在Source port 填上3128，Destination填上127.0.0.1:7891,点击add。
+
+<p>好了，保存你的登录配置文件然后登录。如图：</p>
+
+<p class="image"><img src="ssh_tunnel_1.jpg" alt="" /></p>
+
+<p>6.设置你的Firefox 或者 IE 的代理服务器地址为 127.0.0.1:3128。能上国际网喽&nbsp;</p>
+
+<p class="image"><img src="ssh_tunnel_2.jpg" alt="" /></p>
+
+<p>7.别忘了退出的时候运行一下 killall tinyproxy。老在人家的机器上运行一个代理总是不太好的，呵呵。</p>
+
+<p>写的比较仓促，不详之处欢迎发信到 joyanlj {AT} gmail.com 询问 ^_^。</p>
+
+<p>PS：
+本文的背景知识请自行上网搜索“ssh tunnel”或者在GNU/Linux 等机器上man
+ssh，察看-L选项部分。</p>
+
+<p>PSS: 同志们发挥你的想象力，还可以利用ssh tunnel穿透GFW上一些被ban掉的
+网站哦～～嘿嘿</p>

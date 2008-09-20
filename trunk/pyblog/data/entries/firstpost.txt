@@ -1,0 +1,4 @@
+       This is my first post
+       <p>
+           This is my first post with PyBlosxom.
+       </p>
