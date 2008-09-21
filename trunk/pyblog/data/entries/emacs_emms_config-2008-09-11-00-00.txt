@@ -12,6 +12,7 @@ Emacs EMMS 安装配置
 (add-to-list 'load-path <span style="color: #ffa07a;">"path/to/your/emms/"</span>)
 </pre>
 
+<!--BREAK-->
 
 <h4><span class="toplink"><a href="#top">top</a></span>安装方法2：安装二进制文件</h4>
 进入源代码目录

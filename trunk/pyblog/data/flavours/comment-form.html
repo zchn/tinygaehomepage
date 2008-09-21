@@ -4,7 +4,7 @@
 
 <div class="blosxomCommentForm">
 <!-- To disable AJAX commenting, remove the onsubmit and onclick handlers. -->
-<form method="post" action="$base_url/$file_path" accept-charset="UTF-8"
+<form method="post" action="$base_url/$file_path" accept-charset="utf-8"
       name="comments_form" id="comments_form" onsubmit="return false;">
 <div>
 <input type="hidden" name="secretToken" id="secretTokenInput"
@@ -26,8 +26,8 @@ URL:<br />
 Comment:<br />
 <textarea cols="50" name="body" id="comment-body" rows="12">$cmt_description</textarea><br />
 <br />
-<input value="Preview" name="preview" type="submit" id="preview"
-       onclick="send_comment('preview');" />
+<!--<input value="Preview" name="preview" type="submit" id="preview"
+       onclick="send_comment('preview');" />-->
 <input value="Submit" name="submit" type="submit" id="post"
        onclick="send_comment('post');" />
 </div>

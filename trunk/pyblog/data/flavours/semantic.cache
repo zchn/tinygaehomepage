@@ -6,9 +6,9 @@
     :major-mode 'html-mode
     :tags '(("// used by check_javascript.py. this is almost entirely backwards compatible,
 // back to 4.x browsers.
-document.getElementById(\"secretTokenInput\").value = \"$blog_title\";" section nil nil [1235 1448]) ("" section nil nil [1448 1456]))
+document.getElementById(\"secretTokenInput\").value = \"$blog_title\";" section nil nil [1242 1455]) ("" section nil nil [1455 1463]))
     :file "comment-form.html"
-    :pointmax 1603
+    :pointmax 1610
     :unmatched-syntax 'nil
     )
    )

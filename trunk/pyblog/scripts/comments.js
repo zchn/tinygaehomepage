@@ -52,7 +52,7 @@ function send_comment(type) {
   req.onreadystatechange = function() { comment_statechange(type); }
   req.open('POST', form.action, true);
   req.setRequestHeader('Content-type',
-                       'application/x-www-form-urlencoded;charset=UTF-8');
+                       'application/x-www-form-urlencoded;charset=utf-8');
   // build the post data
   post_data = 'ajax=' + type;
   post_data += '&' + type + '=1';
@@ -61,7 +61,7 @@ function send_comment(type) {
   for (i = 0; i < form.elements.length; i++) {
     elem = form.elements[i];
     if (elem.type != 'submit' && elem.type != 'button')
-      post_data += '&' + elem.name + '=' + escape(elem.value);
+      post_data += '&' + elem.name + '=' + encodeURI(elem.value);
   }
 
   // send the request and tell the user.
@@ -106,7 +106,6 @@ function comment_statechange(type) {
 
     if (xml_http_request.responseText.length == 0) {
       display_error('Empty response from server.');
-      return;
     }
 
     // insert the comment
@@ -128,5 +127,6 @@ function comment_statechange(type) {
         }
       }
     }
+    location.reload(true);
   }
 }

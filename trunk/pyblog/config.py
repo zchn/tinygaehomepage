@@ -140,7 +140,7 @@ py["plugin_dirs"] = ["data/plugins"]
 # the name of a plugin module (i.e. the filename without the .py at
 # the end).
 # ex: py["load_plugins"] = ["pycalendar", "pyfortune", "pyarchives"]
-py["load_plugins"] = ["comments-gae"]
+py["load_plugins"] = ["comments-gae","pyfilenamemtime-gae","readmore-gae"]
 
 
 
@@ -190,4 +190,9 @@ py["load_plugins"] = ["comments-gae"]
 #================settings for comments =================
 py["comment_dir"] = "data/comments"
 py["comment_ext"] = "cmt"
+
+#================settings for readmore =================
+py['readmore_breakpoint'] = '<!--BREAK-->'
+py['readmore_template'] = ['<br /><br />::<a href="%(url)s">READ MORE</a>',' ']
+
 
