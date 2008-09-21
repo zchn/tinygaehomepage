@@ -140,7 +140,7 @@ py["plugin_dirs"] = ["data/plugins"]
 # the name of a plugin module (i.e. the filename without the .py at
 # the end).
 # ex: py["load_plugins"] = ["pycalendar", "pyfortune", "pyarchives"]
-py["load_plugins"] = ["comments-gae","pyfilenamemtime-gae","readmore-gae"]
+py["load_plugins"] = ["comments-gae","pyfilenamemtime-gae","readmore-gae","pycategories-gae"]
 
 
 
