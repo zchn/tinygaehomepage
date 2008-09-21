@@ -6,7 +6,7 @@ BODY {
   COLOR: #000000; 
   FONT: 14px/1.4 'Trebuchet MS',Verdana, Arial, Helvetica, sans-serif;
   line-height: 1.8;
-  background-image: url(/images/bg.gif);
+  background-image: url(/bg.gif);
   background-repeat: repeat-y;
 /*  text-align: justify;*/
 }
@@ -56,7 +56,7 @@ H1{
   COLOR: #004f37;
 /*  Border-bottom: #004f37 2px solid; */
   /*Border-left-width: 6px;*/
-  background: #d9e7e2 url(/images/sky.png) repeat-x;
+  background: #d9e7e2 url(/sky.png) repeat-x;
   font-size: 40px;
   line-height: 1; 
 }
@@ -80,7 +80,7 @@ H2 {
 /*  BORDER-STYLE: ridge;*/
   BACKGROUND: #c4d9ef; 
   line-height: 1;
-  background-image: url(/images/lightblue.gif);
+  background-image: url(/lightblue.gif);
 }
 
 
@@ -101,7 +101,7 @@ H3 {
   border-style: groove; */
   BACKGROUND: #d9eae0;
   line-height: 1;
-  background-image: url(/images/lightgreen.gif);
+  background-image: url(/lightgreen.gif);
 }
 
 H4 {
@@ -117,7 +117,7 @@ H4 {
   BORDER-LEFT: #d04b44 6px solid;
 /*  BACKGROUND: #f2dad8; */
   line-height: 1;
-/*  background-image: url(/images/nicebg2.png);*/
+/*  background-image: url(/nicebg2.png);*/
 }
 
 H5 {
@@ -169,8 +169,8 @@ PRE {
   MARGIN-left: 0px;
   Margin-right: 0px;
   BACKGROUND: #c4e6f0; 
-  /*background-image: url(../images/bg_old.gif);*/
-  background-image: url(/images/brick.gif);
+  /*background-image: url(../bg_old.gif);*/
+  background-image: url(/brick.gif);
 /*  BACKGROUND: #f7fcee;*/
 }
 /*
@@ -190,7 +190,7 @@ div.mulu {
   padding-left: 35px;
   border-top: grey 1px dashed;
   border-bottom: grey 1px dashed; 
-  background: transparent url("/images/menu_tr.gif");
+  background: transparent url("/menu_tr.gif");
 }
 
 
@@ -201,7 +201,7 @@ div.me {
   PADDING: 0.5em 0.5em 0.5em 1em;
   MARGIN-left: 0px;
   Margin-right: 0px;
-  background-image: url(/images/nice.gif);
+  background-image: url(/nice.gif);
 }
 
 div.blosxomComment{
@@ -218,7 +218,7 @@ PRE.example {
   PADDING: 0.5em 0.5em 0.5em 1em;
   MARGIN-left: 0px;
   Margin-right: 0px;
-  background-image: url(/images/nice.gif);
+  background-image: url(/nice.gif);
 }
 
 
@@ -233,7 +233,7 @@ PRE.example {
   font-size: 14px;
   MARGIN-left: 0px;
   Margin-right: 0px;
-  background-image: url(/images/nice.gif);
+  background-image: url(/nice.gif);
 }
 
 PRE.src {
@@ -300,7 +300,7 @@ ul, ol {
 }
 
 ul{
-  list-style-image: url(/images/ul.gif);
+  list-style-image: url(/ul.gif);
 }
 
 ul ol{
@@ -308,11 +308,11 @@ ul ol{
 }
 
 ul ul {
-  list-style-image: url(/images/ulul.gif);
+  list-style-image: url(/ulul.gif);
 }
 
 ol ul {
-  list-style-image: url(/images/olul.gif);
+  list-style-image: url(/olul.gif);
 }
 
 strong em {
@@ -438,15 +438,15 @@ hr {
 .menu:before {
 	line-height: 0.1;
 	font-size: 1px;
-	background: transparent url("/images/menu_tr.gif") no-repeat top right;
+	background: transparent url("/menu_tr.gif") no-repeat top right;
 	margin: 0;
 	height: 9px;
 	display: block;
 	border-bottom: 1px solid #ddd;
-	content: url("/images/key-point_tl.gif");
+	content: url("/key-point_tl.gif");
 }
 .menu {
-	background: #E0E9E9 url("/images/menu_back.gif") right repeat-y;
+	background: #E0E9E9 url("/menu_back.gif") right repeat-y;
 	float: right;
 	clear: both;
 }
@@ -455,10 +455,10 @@ hr {
 	padding-top: 0;
 	line-height: 0.1;
 	font-size: 1px;
-	content:  url("/images/key-point_bl.gif");
+	content:  url("/key-point_bl.gif");
 	margin: 0 0 0 0;
 	height: 8px;
-	background: transparent url("/images/menu_br.gif") scroll no-repeat bottom right ;
+	background: transparent url("/menu_br.gif") scroll no-repeat bottom right ;
 	border-top: 1px solid #fff;
 }
 
@@ -501,7 +501,7 @@ hr {
 
 dt.contents:before {
 	display: inline;
-	content: url("/images/dotnice.gif");
+	content: url("/dotnice.gif");
 }
 
 dt.contents a {
