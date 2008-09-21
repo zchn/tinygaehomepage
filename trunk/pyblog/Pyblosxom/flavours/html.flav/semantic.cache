@@ -6,13 +6,15 @@
     :major-mode 'html-mode
     :tags '(("" section nil nil [7 10]))
     :file "foot.html"
-    :pointmax 152
+    :pointmax 145
+    :unmatched-syntax 'nil
     )
    (semanticdb-table "head.html"
     :major-mode 'html-mode
-    :tags '(("$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)" section nil nil [126 200]) ("$(blog_title)" section (:members (("$(blog_title)" section (:members (("Home" section nil nil [237 271]) ("RSS 2.0" section nil nil [271 319]) ("ATOM 1.0" section nil nil [319 322]))) nil [207 210]))) nil [200 205]))
+    :tags '(("$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)" section nil nil [114 188]) ("$(blog_title)" section (:members (("$(blog_title)" section (:members (("Home" section nil nil [225 259]) ("RSS 2.0" section nil nil [259 307]) ("ATOM 1.0" section nil nil [307 310]))) nil [195 198]))) nil [188 193]))
     :file "head.html"
-    :pointmax 407
+    :pointmax 455
+    :unmatched-syntax 'nil
     )
    (semanticdb-table "story.html"
     :major-mode 'html-mode

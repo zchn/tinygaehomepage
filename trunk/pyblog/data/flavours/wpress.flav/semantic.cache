@@ -1,0 +1,21 @@
+;; Object wpress.flav/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "wpress.flav/"
+  :tables (list 
+   (semanticdb-table "head.wpress"
+    :major-mode 'html-mode
+    :tags '(("$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)" section nil nil [125 204]) ("$(blog_title)" section (:members (("$(blog_title)" section nil nil [357 547]) ("Home" section nil nil [547 614]) ("RSS 2.0" section nil nil [614 695]) ("ATOM 1.0" section nil nil [695 698]))) nil [204 209]))
+    :file "head.wpress"
+    :pointmax 1138
+    )
+   (semanticdb-table "foot.wpress"
+    :major-mode 'html-mode
+    :tags '(("" section nil nil [421 424]))
+    :file "foot.wpress"
+    :pointmax 559
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )

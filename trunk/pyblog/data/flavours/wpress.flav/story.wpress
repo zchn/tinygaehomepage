@@ -1,0 +1,9 @@
+ <div class="tit">
+<a name="$(fn)"
+href="$(base_url)/$(file_path_urlencoded).$(flavour)">$(title)</a>
+</div>
+ <div class="date">$(ti)</div>
+<table style="table-layout:fixed"><tr><td>
+<div id="blog_text" class="cnt">$(body)</div>
+</td></tr>
+</table>

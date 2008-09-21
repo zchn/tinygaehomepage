@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="all"
+          href="/wp_main.css" />
+    <title>$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)</title>
+
+  </head>
+  <body>
+
+    <div id="main" align="left">
+
+      <div id="header">
+        <div class="lc"><div class="rc"></div></div>
+        
+        <div class="tit"><a href="/" class="titlink" >$(blog_title)</a></div>
+        <div class="desc">$(blog_description)</div>
+
+        <div id="tabline">&nbsp;</div>
+        <div id="tab">
+          [
+          <a href="$(base_url)/">Home</a>
+          <span>|</span>
+          <a href="$(base_url)/index.rss20">RSS 2.0</a>
+          <span>|</span>
+          <a href="$(base_url)/index.atom">ATOM 1.0</a>
+          ]
+        </div>
+      </div>
+
+<!--      <p>$(pi_da) $(pi_mo) $(pi_yr)</p> -->
+
+      <div class="stage">
+        <table width="100%" border="0" cellspacing="10" cellpadding="10" id="layout">
+          <tr>
+            <td valign="top" class="c2t1" width="70%">
+
+              <div id="mod_bloglist" class="mod" rel="drag">
+
+                <div id="m_blog" class="modbox">
+
+	          
