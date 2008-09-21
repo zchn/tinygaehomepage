@@ -82,7 +82,7 @@ py["depth"] = 0
 py["num_entries"] = 5
 
 # What should the default flavour you want used be?
-py["default_flavour"] = "html"
+py["default_flavour"] = "wpress"
 
 
 

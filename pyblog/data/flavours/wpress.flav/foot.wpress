@@ -1,0 +1,23 @@
+                </div>
+              </div>
+            </td>
+            <td valign="top" class="c2t3" >
+              <div class="categoryblock">
+                $(categorylinks)
+              </div>
+
+	        <!-- <div id="m_track" class="modbox" bgcolor=black> -->
+                <!--   $(categorylinks) -->
+	        <!-- </div> -->
+
+            </td>
+</tr>
+</table>
+</div><!-- stage -->
+</div><!-- main -->
+
+<p>
+  <a href="http://pyblosxom.sourceforge.net/"><img src="/pb_pyblosxom.gif" alt="Made with PyBlosxom" border="0" /></a>
+</p>
+</body>
+</html>

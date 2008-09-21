@@ -11,9 +11,9 @@
     )
    (semanticdb-table "config.py"
     :major-mode 'python-mode
-    :tags '(("py" variable nil nil [432 439]) ("py" variable nil nil [781 801]) ("py" variable nil nil [1123 1151]) ("py" variable nil nil [1193 1237]) ("py" variable nil nil [1277 1304]) ("py" variable nil nil [1395 1433]) ("py" variable nil nil [1499 1525]) ("py" variable nil nil [1580 1609]) ("py" variable nil nil [1875 1916]) ("py" variable nil nil [2055 2096]) ("py" variable nil nil [2136 2166]) ("py" variable nil nil [2167 2201]) ("py" variable nil nil [2323 2352]) ("py" variable nil nil [2566 2581]) ("py" variable nil nil [2756 2777]) ("py" variable nil nil [2831 2861]) ("py" variable nil nil [4430 4466]) ("py" variable nil nil [5029 5103]) ("py" variable nil nil [6762 6797]) ("py" variable nil nil [6798 6823]) ("py" variable nil nil [6882 6924]) ("py" variable nil nil [6925 7004]))
+    :tags '(("py" variable nil nil [432 439]) ("py" variable nil nil [781 801]) ("py" variable nil nil [1123 1151]) ("py" variable nil nil [1193 1237]) ("py" variable nil nil [1277 1304]) ("py" variable nil nil [1395 1433]) ("py" variable nil nil [1499 1525]) ("py" variable nil nil [1580 1609]) ("py" variable nil nil [1875 1916]) ("py" variable nil nil [2055 2096]) ("py" variable nil nil [2136 2166]) ("py" variable nil nil [2167 2201]) ("py" variable nil nil [2323 2352]) ("py" variable nil nil [2566 2581]) ("py" variable nil nil [2756 2777]) ("py" variable nil nil [4432 4468]) ("py" variable nil nil [5031 5124]) ("py" variable nil nil [6783 6818]) ("py" variable nil nil [6819 6844]) ("py" variable nil nil [6903 6945]) ("py" variable nil nil [6946 7025]))
     :file "config.py"
-    :pointmax 7007
+    :pointmax 7028
     :unmatched-syntax 'nil
     )
    )

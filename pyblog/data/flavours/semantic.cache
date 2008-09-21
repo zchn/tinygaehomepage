@@ -11,6 +11,12 @@ document.getElementById(\"secretTokenInput\").value = \"$blog_title\";" section 
     :pointmax 1610
     :unmatched-syntax 'nil
     )
+   (semanticdb-table "comment-story.html"
+    :major-mode 'html-mode
+    :tags '(("COMMENTS" section nil nil [31 34]))
+    :file "comment-story.html"
+    :pointmax 49
+    )
    )
   :file "semantic.cache"
   :semantic-tag-version "2.0pre4"
