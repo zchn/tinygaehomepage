@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 This module contains an extension to Blosxom file entries to support
 comments.
@@ -202,6 +203,7 @@ from Pyblosxom import tools
 from Pyblosxom.entries.base import EntryBase
 from Pyblosxom.renderers import blosxom
 from google.appengine.ext import db
+import urllib
 import logging
 
 class Commentdb(db.Model):
@@ -215,7 +217,7 @@ class Commentdb(db.Model):
     email = db.EmailProperty();
     source = db.StringProperty();
     pubDate = db.DateTimeProperty(auto_now_add=True);
-    description = db.TextProperty();
+    description = db.StringProperty();
     
 
 def cb_start(args):
@@ -466,7 +468,7 @@ def writeComment(request, config, data, comment, encoding):
               link = comment['link'],
               email = db.Email(comment['email']),
               source = comment['source'],
-              description = db.Text(comment['description'])).put();
+              description = comment['description']).put();
               
 
 #     cdir = os.path.join(config['comment_dir'],entry['absolute_path'])
@@ -676,6 +678,7 @@ def sanitize(body):
     """
     This code shamelessly lifted from Sam Ruby's mombo/post.py
     """
+
     body=re.sub(r'\s+$','',body)
     body=re.sub('\r\n?','\n', body)
 
@@ -828,6 +831,8 @@ def cb_prepare(args):
 
         if form.has_key('email'):
             cdict['email'] = form['email'].value
+        else:
+            cdict['email'] = "N/A"
 
         cdict['ipaddress'] = pyhttp.get('REMOTE_ADDR', '')
 

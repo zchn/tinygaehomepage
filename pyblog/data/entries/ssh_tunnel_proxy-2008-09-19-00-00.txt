@@ -12,7 +12,7 @@
 
 <p>过程：
 1.在unix-center的服务器上下载tinyproxy源代码。</p>
-
+<!--BREAK-->
 <pre class="example">
 wget -c http://nchc.dl.sourceforge.net/sourceforge/tinyproxy/tinyproxy-1.6.3.tar.gz
 </pre>
